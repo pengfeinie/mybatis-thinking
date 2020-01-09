@@ -1,0 +1,11 @@
+/.idea/codeStyles
+/.idea
+/npf-mybatis-only/npf-mybatis-only.iml
+/npf-mybatis-spring/npf-mybatis-spring.iml
+/npf-mybatis.iml
+/npf-mybatis-only/target/classes/com/niepengfei/mybatis/*.class
+/npf-mybatis-only/target/classes/com/niepengfei/mybatis/mapper/*.class
+/npf-mybatis-only/target/classes/com/niepengfei/mybatis/meta/*.class
+/npf-mybatis-only/target/classes/com/niepengfei/mybatis/service/*.class
+/npf-mybatis-only/target
+/npf-mybatis-spring/target
