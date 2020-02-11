@@ -9,3 +9,5 @@
 /npf-mybatis-only/target/classes/com/niepengfei/mybatis/service/*.class
 /npf-mybatis-only/target
 /npf-mybatis-spring/target
+/npf-mybatis-spring-upgrade/target/classes/com/niepengfei/mybatis/upgrade
+/npf-mybatis-spring-upgrade/*.iml

@@ -1,6 +1,5 @@
 package com.niepengfei.mybatis;
 
-import com.niepengfei.mybatis.mapper.UserMapper;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -17,8 +16,6 @@ import org.springframework.core.type.classreading.MetadataReader;
 import org.springframework.core.type.classreading.MetadataReaderFactory;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.SystemPropertyUtils;
-
-import java.util.Set;
 
 /**
  * @author niepengfei
