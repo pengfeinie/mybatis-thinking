@@ -27,30 +27,20 @@ public class ClassPathNpfMybatisMapperScanner extends ClassPathBeanDefinitionSca
      */
     @Override
     public Set<BeanDefinitionHolder> doScan(String... basePackages) {
-      Set<BeanDefinitionHolder> beanDefinitions = super.doScan(basePackages);
-      if (!beanDefinitions.isEmpty()) {
-        processBeanDefinitions(beanDefinitions);
-      }
-      return beanDefinitions;
-    }
-
-    private void processBeanDefinitions(Set<BeanDefinitionHolder> beanDefinitions) {
-        for (BeanDefinitionHolder holder : beanDefinitions) {
+       Set<BeanDefinitionHolder> beanDefinitions = super.doScan(basePackages);
+       for (BeanDefinitionHolder holder : beanDefinitions) {
             GenericBeanDefinition definition = (GenericBeanDefinition) holder.getBeanDefinition();
             String beanClassName = definition.getBeanClassName();
             // the mapper interface is the original class of the bean
             // but, the actual class of the bean is MapperFactoryBean
             definition.setBeanClass(this.mapperFactoryBeanClass);
             definition.getConstructorArgumentValues().addGenericArgumentValue(beanClassName);
-        }
+       }
+       return beanDefinitions;
     }
 
     @Override
     protected boolean isCandidateComponent(AnnotatedBeanDefinition beanDefinition) {
       return beanDefinition.getMetadata().isInterface() && beanDefinition.getMetadata().isIndependent();
-    }
-
-    public void registerFilters() {
-        addIncludeFilter((metadataReader, metadataReaderFactory) -> true);
     }
 }

@@ -35,7 +35,7 @@ public class NpfMybatisMapperScanBeanDefinitionRegistryPostProcessor implements 
         ClassPathNpfMybatisMapperScanner scanner = new ClassPathNpfMybatisMapperScanner(registry);
         scanner.setResourceLoader(this.applicationContext);
         scanner.setMapperFactoryBeanClass(this.mapperFactoryBeanClass);
-        scanner.registerFilters();
+        scanner.addIncludeFilter(((metadataReader, metadataReaderFactory) -> true));
         scanner.scan(StringUtils.tokenizeToStringArray(this.basePackage, ConfigurableApplicationContext.CONFIG_LOCATION_DELIMITERS));
     }
 
