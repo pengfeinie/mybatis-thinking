@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 public class NpfMybatisMapperScannerImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar {
 
+    @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
         AnnotationAttributes annotationAttributes = AnnotationAttributes.fromMap(importingClassMetadata.getAnnotationAttributes(NpfMybatisMapperScan.class.getName()));
         registerBeanDefinitions(annotationAttributes, registry, generateBaseBeanName(importingClassMetadata, 0));
@@ -22,7 +23,7 @@ public class NpfMybatisMapperScannerImportBeanDefinitionRegistrar implements Imp
         return importingClassMetadata.getClassName() + "#" + NpfMybatisMapperScannerImportBeanDefinitionRegistrar.class.getSimpleName() + "#" + index;
     }
 
-    void registerBeanDefinitions(AnnotationAttributes annotationAttributes, BeanDefinitionRegistry registry, String beanName) {
+    private static void registerBeanDefinitions(AnnotationAttributes annotationAttributes, BeanDefinitionRegistry registry, String beanName) {
         BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(NpfMybatisMapperScanBeanDefinitionRegistryPostProcessor.class);
         List<String> basePackages = new ArrayList<>();
         basePackages.addAll(Arrays.stream(annotationAttributes.getStringArray("value")).filter(StringUtils::hasText).collect(Collectors.toList()));

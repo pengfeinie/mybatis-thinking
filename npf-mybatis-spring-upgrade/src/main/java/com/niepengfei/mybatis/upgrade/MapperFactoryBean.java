@@ -10,7 +10,7 @@ public class MapperFactoryBean<T> implements FactoryBean<T> {
   private Class<T> mapperInterface;
 
   public MapperFactoryBean(Class<T> mapperInterface) {
-    this.mapperInterface = mapperInterface;
+      this.mapperInterface = mapperInterface;
   }
 
   @Override
