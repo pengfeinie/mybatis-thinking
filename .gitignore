@@ -17,3 +17,6 @@
 /npf-mybatis-spring-upgrade/target
 /npf-mybatis-spring2/*.iml
 /npf-mybatis-spring3/*.iml
+/npf-mybatis-spring2/target/classes/com/niepengfei/mybatis/*.class
+/npf-mybatis-spring3/target
+/npf-mybatis-spring2/target
