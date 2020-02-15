@@ -2,6 +2,7 @@ package com.niepengfei.mybatis;
 
 import com.niepengfei.mybatis.factory.RoleMapperFactoryBean;
 import com.niepengfei.mybatis.factory.UserMapperFactoryBean;
+import com.niepengfei.mybatis.mapper.RoleMapper;
 import com.niepengfei.mybatis.mapper.UserMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -18,12 +19,12 @@ import org.springframework.context.annotation.Configuration;
 public class AppConfig {
 
     @Bean
-    public UserMapperFactoryBean userMapper() {
+    public UserMapperFactoryBean<UserMapper> userMapper() {
         return new UserMapperFactoryBean<UserMapper>();
     }
 
     @Bean
-    public RoleMapperFactoryBean roleMapper(){
-        return new RoleMapperFactoryBean();
+    public RoleMapperFactoryBean<RoleMapper> roleMapper(){
+        return new RoleMapperFactoryBean<RoleMapper>();
     }
 }
