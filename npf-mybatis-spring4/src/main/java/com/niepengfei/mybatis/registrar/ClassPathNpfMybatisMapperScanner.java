@@ -1,6 +1,7 @@
 
-package com.niepengfei.mybatis.upgrade;
+package com.niepengfei.mybatis.registrar;
 
+import com.niepengfei.mybatis.factory.NpfMapperFactoryBean;
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -9,16 +10,21 @@ import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
 import java.util.Set;
 
 
+/**
+ * @author niepengfei
+ * @version 1.0.0
+ * @since 2020/1/4
+ */
 public class ClassPathNpfMybatisMapperScanner extends ClassPathBeanDefinitionScanner {
 
-    private Class<? extends MapperFactoryBean> mapperFactoryBeanClass = MapperFactoryBean.class;
+    private Class<? extends NpfMapperFactoryBean> mapperFactoryBeanClass = NpfMapperFactoryBean.class;
 
     public ClassPathNpfMybatisMapperScanner(BeanDefinitionRegistry registry) {
         super(registry, false);
     }
 
-    public void setMapperFactoryBeanClass(Class<? extends MapperFactoryBean> mapperFactoryBeanClass) {
-        this.mapperFactoryBeanClass = mapperFactoryBeanClass == null ? MapperFactoryBean.class : mapperFactoryBeanClass;
+    public void setMapperFactoryBeanClass(Class<? extends NpfMapperFactoryBean<?>> mapperFactoryBeanClass) {
+        this.mapperFactoryBeanClass = mapperFactoryBeanClass == null ? NpfMapperFactoryBean.class : mapperFactoryBeanClass;
     }
 
     /**
@@ -32,9 +38,9 @@ public class ClassPathNpfMybatisMapperScanner extends ClassPathBeanDefinitionSca
             GenericBeanDefinition definition = (GenericBeanDefinition) holder.getBeanDefinition();
             String beanClassName = definition.getBeanClassName();
             // the mapper interface is the original class of the bean
-            // but, the actual class of the bean is MapperFactoryBean
+            // but, the actual class of the bean is NpfMapperFactoryBean
             definition.setBeanClass(this.mapperFactoryBeanClass);
-            definition.getConstructorArgumentValues().addGenericArgumentValue(beanClassName);
+            definition.getPropertyValues().add("mapperInterface",beanClassName);
        }
        return beanDefinitions;
     }

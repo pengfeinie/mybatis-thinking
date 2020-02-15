@@ -20,3 +20,5 @@
 /npf-mybatis-spring2/target/classes/com/niepengfei/mybatis/*.class
 /npf-mybatis-spring3/target
 /npf-mybatis-spring2/target
+/npf-mybatis-spring4/target
+/npf-mybatis-spring4/*.iml

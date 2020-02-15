@@ -1,5 +1,7 @@
-package com.niepengfei.mybatis.upgrade.mapper;
+package com.niepengfei.mybatis.mapper;
 
+
+import com.niepengfei.mybatis.annotations.Select;
 
 import java.util.Map;
 
@@ -14,7 +16,7 @@ import java.util.Map;
  */
 public interface UserMapper {
 
-    //@Select(value = "select * from npf_user where id = #{id}")
+    @Select(value = "select * from npf_user where id = #{id}")
     Map<String,String> getUserById(Long id);
 
 }

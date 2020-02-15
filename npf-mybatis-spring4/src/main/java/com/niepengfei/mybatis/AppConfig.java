@@ -1,5 +1,6 @@
-package com.niepengfei.mybatis.upgrade;
+package com.niepengfei.mybatis;
 
+import com.niepengfei.mybatis.registrar.NpfMapperScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,9 +10,10 @@ import org.springframework.context.annotation.Configuration;
  * @version 1.0.0
  * @since 2020/1/4
  */
-@ComponentScan("com.niepengfei.mybatis.upgrade")
+@ComponentScan("com.niepengfei.mybatis")
 @Configuration
-@NpfMybatisMapperScan(value = "com.niepengfei.mybatis.upgrade.mapper")
+@NpfMapperScan("com.niepengfei.mybatis.mapper")
 public class AppConfig {
+
 
 }
