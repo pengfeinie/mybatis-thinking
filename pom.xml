@@ -12,6 +12,8 @@
         <module>npf-mybatis-spring</module>
         <module>npf-mybatis-spring1</module>
         <module>npf-mybatis-spring-upgrade</module>
+        <module>npf-mybatis-spring3</module>
+        <module>npf-mybatis-spring2</module>
     </modules>
     <packaging>pom</packaging>
 

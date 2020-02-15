@@ -15,3 +15,5 @@
 /npf-mybatis-spring-upgrade/target/maven-archiver
 /npf-mybatis-spring1/*.iml
 /npf-mybatis-spring-upgrade/target
+/npf-mybatis-spring2/*.iml
+/npf-mybatis-spring3/*.iml
