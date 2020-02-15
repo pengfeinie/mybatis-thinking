@@ -17,11 +17,11 @@
             <artifactId>mybatis</artifactId>
             <version>3.5.3</version>
         </dependency>
-       <!-- <dependency>
+        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
             <version>0.1.18</version>
-        </dependency>-->
+        </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>

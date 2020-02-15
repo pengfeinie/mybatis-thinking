@@ -11,3 +11,7 @@
 /npf-mybatis-spring/target
 /npf-mybatis-spring-upgrade/target/classes/com/niepengfei/mybatis/upgrade
 /npf-mybatis-spring-upgrade/*.iml
+/npf-mybatis-spring1/target
+/npf-mybatis-spring-upgrade/target/maven-archiver
+/npf-mybatis-spring1/*.iml
+/npf-mybatis-spring-upgrade/target

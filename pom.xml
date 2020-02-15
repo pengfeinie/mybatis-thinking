@@ -10,6 +10,7 @@
     <modules>
         <module>npf-mybatis-only</module>
         <module>npf-mybatis-spring</module>
+        <module>npf-mybatis-spring1</module>
         <module>npf-mybatis-spring-upgrade</module>
     </modules>
     <packaging>pom</packaging>
