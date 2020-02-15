@@ -9,7 +9,6 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>npf-mybatis-only</module>
-        <module>npf-mybatis-spring</module>
         <module>npf-mybatis-spring1</module>
         <module>npf-mybatis-spring3</module>
         <module>npf-mybatis-spring2</module>
