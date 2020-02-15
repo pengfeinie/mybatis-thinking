@@ -17,11 +17,11 @@ public interface UserMapper {
 ```
 
 <br />我们这里有个UserMapper接口，里面有个方法，方法上面有注解，注解里面有SQL语句，那么mybatis是如何执行这个UserMapper的呢，这是mybatis最核心的问题。在模拟mybatis的源码之前，我们首先看一下mybatis是如何做的？正所谓装逼之前，要看别人是如何装逼的，这样我才可以更好地去装逼。<br />在mybatis的官方网站  [https://mybatis.org/mybatis-3/getting-started.html](https://mybatis.org/mybatis-3/getting-started.html)  中有提到：<br />
-<br />![image.png](https://cdn.nlark.com/yuque/0/2020/png/749466/1581751306740-bc7b334a-fb1e-486d-a1f9-00b418c41362.png)<br />
+<br />![](https://cdn.nlark.com/yuque/0/2020/png/749466/1581751306740-bc7b334a-fb1e-486d-a1f9-00b418c41362.png)<br />
 <br />笔者就是按照这个简单的快速入门进行搭建的mybatis开发环境，如下图你可以看到，从mybatis中获取到的UserMapper对象是JDK动态代理对象。<br />
-<br />![image.png](https://cdn.nlark.com/yuque/0/2020/png/749466/1581751391133-97f72eba-f7ec-4481-bbeb-4a28c9050e5d.png)<br />
+<br />![](https://cdn.nlark.com/yuque/0/2020/png/749466/1581751391133-97f72eba-f7ec-4481-bbeb-4a28c9050e5d.png)<br />
 <br />那么这个代理对象是在哪里产生的呢？请看如下图。<br />
-<br />![image.png](https://cdn.nlark.com/yuque/0/2020/png/749466/1581751563886-44a0d76c-d08b-4b04-a356-057c2b9ed4ab.png)<br />
+<br />![](https://cdn.nlark.com/yuque/0/2020/png/749466/1581751563886-44a0d76c-d08b-4b04-a356-057c2b9ed4ab.png)<br />
 <br />接下来看笔者如何牛逼的模拟mybatis的源码，请看下面。<br />
 <br />首先我们需要一个产生JDK动态代理的逻辑，如下：
 
@@ -81,7 +81,7 @@ public class MockMybatisApp {
 }
 ```
 
-<br />得到结果如下：<br />![image.png](https://cdn.nlark.com/yuque/0/2020/png/749466/1581752977779-1bdffc08-c9f3-4463-a437-0fe6b00bf0c9.png)<br />
+<br />得到结果如下：<br />![](https://cdn.nlark.com/yuque/0/2020/png/749466/1581752977779-1bdffc08-c9f3-4463-a437-0fe6b00bf0c9.png)<br />
 <br />笔者已经完美的模拟出了mybatis的核心源码，接下来让我慢慢的来分析。<br />
 <br />在这里，我们肯定知道产生了一个UserMapper的代理对象，但是这里代理对象到底长的啥鸟样呢？其实我们是可以看到的，请加上如下的参数：<br />
 
@@ -222,7 +222,7 @@ public class AppConfig {
 ```
 
 <br />但是这种方式有什么不好的地方？你可以想象一下，如果我们的mappper很多的情况下，你会不断地去写@Bean，代码非常的冗余，mybatis是没有采用这种方案的。<br />
-<br />你会发现，在这里我们一个Mapper对应了一个FactoryBean。<br />![image.png](https://cdn.nlark.com/yuque/0/2020/png/749466/1581754326814-20094379-2be2-4e3b-a26a-4e20ec6447f7.png)<br />
+<br />你会发现，在这里我们一个Mapper对应了一个FactoryBean。<br />![](https://cdn.nlark.com/yuque/0/2020/png/749466/1581754326814-20094379-2be2-4e3b-a26a-4e20ec6447f7.png)<br />
 <br />
 <br />请看如下动图，这种方式实现是可以的，请注意动态图上面显示的文字。<br />
 
@@ -287,10 +287,10 @@ public class App {
 
 <br />首先需要说明的是，FactoryBean和BeanFactory虽然名字很像，但是这两者是完全不同的两个概念，用途上也是天差地别。BeanFactory是一个Bean工厂，在一定程度上我们可以简单理解为它就是我们平常所说的Spring容器(注意这里说的是简单理解为容器)，它完成了Bean的创建、自动装配，获取等过程，存储了创建完成的单例Bean。而FactoryBean通过名字看，我们可以猜出它是Bean，但它是一个特殊的Bean，究竟有什么特殊之处呢？它的特殊之处在我们平时开发过程中又有什么用处呢？FactoryBean的特殊之处在于它可以向容器中注册两个Bean，一个是它本身，一个是FactoryBean.getObject()方法返回值所代表的Bean。<br />
 <br />自定义一个NpfMapperFactoryBean，让它实现了FactoryBean接口，重写了接口中的两个方法，在getObejct()方法中，返回了一个UserMapper的代理对象；在getObjectType()方法中返回了UserMapper.class。然后在NpfMapperFactoryBean添加了注解@Component注解，意思是将NpfMapperFactoryBean类交给Spring管理。<br />
-<br />![image.png](https://cdn.nlark.com/yuque/0/2020/png/749466/1581755181804-4b756821-4b4f-4c88-bcfe-933d5f93550b.png)<br />
-<br />我们来运行看一下，发现了NPE异常，为什么呢？因为我们打印了UserMapper这个bean，实际上会去调用代理对象的toString()方法，但是toString()方法也被代理了，所以就发生了如下异常。<br />![image.png](https://cdn.nlark.com/yuque/0/2020/png/749466/1581755328815-9b0cae6f-0eb7-4d43-8a4a-e5f6c4fade25.png)<br />
-<br />我们稍微修改一下代码：<br />![image.png](https://cdn.nlark.com/yuque/0/2020/png/749466/1581755410474-9381821d-4a04-4642-9bcd-b7f6517cf005.png)<br />
-<br />再次请看如下图：<br />![image.png](https://cdn.nlark.com/yuque/0/2020/png/749466/1581755466356-f3a47b8a-bd70-4b2f-b818-cc80caa3a32d.png)<br />
+<br />![](https://cdn.nlark.com/yuque/0/2020/png/749466/1581755181804-4b756821-4b4f-4c88-bcfe-933d5f93550b.png)<br />
+<br />我们来运行看一下，发现了NPE异常，为什么呢？因为我们打印了UserMapper这个bean，实际上会去调用代理对象的toString()方法，但是toString()方法也被代理了，所以就发生了如下异常。<br />![](https://cdn.nlark.com/yuque/0/2020/png/749466/1581755328815-9b0cae6f-0eb7-4d43-8a4a-e5f6c4fade25.png)<br />
+<br />我们稍微修改一下代码：<br />![](https://cdn.nlark.com/yuque/0/2020/png/749466/1581755410474-9381821d-4a04-4642-9bcd-b7f6517cf005.png)<br />
+<br />再次请看如下图：<br />![](https://cdn.nlark.com/yuque/0/2020/png/749466/1581755466356-f3a47b8a-bd70-4b2f-b818-cc80caa3a32d.png)<br />
 <br />我们可以先看下如下问题：<br />
 <br />a. 在AppConfig类中我们只扫描了com.niepengfei.mybatis这个包下的类，按照我们的常规理解，这个时候应该只会有NpfMapperFactoryBean这个类被放进Spring容器中了，UserMapper并没有被扫描，因为UserMapper上面并没有加@Service或者@Component注解。而我们在测试时却可以从容器中获取到UserMapper这个Bean，为什么？
 
@@ -306,23 +306,23 @@ System.out.println(ac.getBean("&npfMapperFactoryBean"));
 ```
 
 <br />需要告诉大家的是，mybatis就是使用这种方案将mapper对象交给spring容器管理的。不信的话，你请看：<br />[https://mybatis.org/spring/mappers.html#register](https://mybatis.org/spring/mappers.html#register)<br />
-<br />![image.png](https://cdn.nlark.com/yuque/0/2020/png/749466/1581755549535-d7901589-3fa0-4d28-94b7-f49205937588.png)<br />
+<br />![](https://cdn.nlark.com/yuque/0/2020/png/749466/1581755549535-d7901589-3fa0-4d28-94b7-f49205937588.png)<br />
 <br />接下来我们全程模拟mybatis，刚才笔者写的NpfMapperFactoryBean写的还不够灵活，接下来我们按照mybatis的思路进行改善。<br />
 
 <a name="oOvmF"></a>
 ### 方法一：一个Mapper接口，写一个FactoryBean
 
-![image.png](https://cdn.nlark.com/yuque/0/2020/png/749466/1581758397699-3510c6fc-5a38-4f67-b628-9b143e01e9a9.png)<br />
+![](https://cdn.nlark.com/yuque/0/2020/png/749466/1581758397699-3510c6fc-5a38-4f67-b628-9b143e01e9a9.png)<br />
 <br />这种方法的弊端显而易见，当我们的Mapper越来越多的时候，FactoryBean的类也会越来越多，而且需要配置的@Bean也会越来越多。
 
 <a name="B0tXB"></a>
 ### 方法二：FactoryBean可配置Mapper接口
 
-![image.png](https://cdn.nlark.com/yuque/0/2020/png/749466/1581758595477-430a37fd-9331-4e84-a6fa-283ee1909296.png)
+![](https://cdn.nlark.com/yuque/0/2020/png/749466/1581758595477-430a37fd-9331-4e84-a6fa-283ee1909296.png)
 
 我可以告诉你，mybatis官方也是这么做的，不信的话，请看：<br />[https://mybatis.org/spring/mappers.html#register](https://mybatis.org/spring/mappers.html#register)
 
-![image.png](https://cdn.nlark.com/yuque/0/2020/png/749466/1581758767298-f5e6fc7f-1ba2-49c5-b8d9-878df2f6aef9.png)
+![](https://cdn.nlark.com/yuque/0/2020/png/749466/1581758767298-f5e6fc7f-1ba2-49c5-b8d9-878df2f6aef9.png)
 
 这种方法虽然可以解决FactoryBean的类膨胀的问题，但是当我们的Mapper越来越多的时候，需要配置的@Bean也会越来越多。可以看到，我们已经模拟了mybatis这一核心功能。这个并不是mybatis最牛逼的地方，mybatis最牛逼的地方在于你可以加一个注解，可以扫描包下面的所有的mapper，全部注入到spring容器中，而不是通过现在这种方式。<br />
 
@@ -336,7 +336,7 @@ System.out.println(ac.getBean("&npfMapperFactoryBean"));
 
 首先定义扫描器的注解：
 
-![image.png](https://cdn.nlark.com/yuque/0/2020/png/749466/1581759129305-7d938ee2-7ce1-4bd2-93e2-e07a725cddbf.png)
+![](https://cdn.nlark.com/yuque/0/2020/png/749466/1581759129305-7d938ee2-7ce1-4bd2-93e2-e07a725cddbf.png)
 
-其次定义 ImportBeanDefinitionRegistrar :<br />![image.png](https://cdn.nlark.com/yuque/0/2020/png/749466/1581759414570-b552b739-3426-478d-bf28-bae97b3250f6.png)
+其次定义 ImportBeanDefinitionRegistrar :<br />![](https://cdn.nlark.com/yuque/0/2020/png/749466/1581759414570-b552b739-3426-478d-bf28-bae97b3250f6.png)
 
