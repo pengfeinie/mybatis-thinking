@@ -14,6 +14,7 @@ import java.util.Map;
  */
 public class NpfMapperProxy implements InvocationHandler {
 
+    @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         if (method.getName().equals("toString")){
             return proxy.getClass().getInterfaces()[0].getName();

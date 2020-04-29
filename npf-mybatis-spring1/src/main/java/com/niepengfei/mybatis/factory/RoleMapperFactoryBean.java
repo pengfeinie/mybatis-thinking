@@ -11,10 +11,12 @@ import org.springframework.beans.factory.FactoryBean;
  */
 public class RoleMapperFactoryBean<T> implements FactoryBean<T> {
 
+    @Override
     public T getObject() throws Exception {
         return NpfMybatisSqlSession.getMapper(RoleMapper.class);
     }
 
+    @Override
     public Class<?> getObjectType() {
         return RoleMapper.class;
     }

@@ -11,10 +11,12 @@ import org.springframework.beans.factory.FactoryBean;
  */
 public class UserMapperFactoryBean<T> implements FactoryBean<T> {
 
+    @Override
     public T getObject() throws Exception {
         return NpfMybatisSqlSession.getMapper(UserMapper.class);
     }
 
+    @Override
     public Class<?> getObjectType() {
         return UserMapper.class;
     }
