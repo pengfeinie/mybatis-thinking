@@ -12,10 +12,12 @@ public class NpfMapperFactoryBean<T> implements FactoryBean<T> {
 
     private Class<T> mapperInterface;
 
+    @Override
     public T getObject() throws Exception {
         return NpfMybatisSqlSession.getMapper(mapperInterface);
     }
 
+    @Override
     public Class<?> getObjectType() {
         return mapperInterface;
     }
