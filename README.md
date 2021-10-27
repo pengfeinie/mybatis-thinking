@@ -1,3 +1,13 @@
+* [第1章 了解MyBatis的官网](#第1章-了解mybatis的官网)
+* [第2章 模拟mybatis源码](#第2章-模拟mybatis源码)
+* [第3章 如何把第三方的对象交给Spring管理](#第3章-如何把第三方的对象交给spring管理)
+  * [第一种方式：<a href="">@Bean </a> 的注解](#第一种方式bean--的注解)
+  * [第二种方式：通过API的方式，registerSingleton](#第二种方式通过api的方式registersingleton)
+  * [第三种方式：FactoryBean](#第三种方式factorybean)
+    * [方法一：一个Mapper接口，写一个FactoryBean](#方法一一个mapper接口写一个factorybean)
+    * [方法二：FactoryBean可配置Mapper接口](#方法二factorybean可配置mapper接口)
+* [第4章 MyBatis如何把多个mapper注入容器](#第4章-mybatis如何把多个mapper注入容器)
+
 # 第1章 了解MyBatis的官网
 
 <br />mybatis的官方网站:  [https://mybatis.org/mybatis-3/](https://mybatis.org/mybatis-3/)<br />mybatis-spring整合的网站：[https://mybatis.org/spring](https://mybatis.org/spring)<br />mybatis-spring-boot整合的网站：[https://mybatis.org/spring/boot.html](https://mybatis.org/spring/boot.html)<br />本篇文章的github地址：[https://github.com/pengfeinie/npf-mybatis](https://github.com/pengfeinie/npf-mybatis)<br />
