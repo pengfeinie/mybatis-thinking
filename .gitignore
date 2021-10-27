@@ -22,3 +22,9 @@
 /npf-mybatis-spring2/target
 /npf-mybatis-spring4/target
 /npf-mybatis-spring4/*.iml
+/*.iml
+/mybatis-thinking-only/*.iml
+/mybatis-thinking1-spring/*.iml
+/mybatis-thinking2-spring/*.iml
+/mybatis-thinking3-spring/*.iml
+/mybatis-thinking4-spring/*.iml

@@ -5,14 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.niepengfei.mybatis</groupId>
-    <artifactId>npf-mybatis</artifactId>
+    <artifactId>mybatis-thinking</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>npf-mybatis-only</module>
-        <module>npf-mybatis-spring1</module>
-        <module>npf-mybatis-spring3</module>
-        <module>npf-mybatis-spring2</module>
-        <module>npf-mybatis-spring4</module>
+        <module>mybatis-thinking-only</module>
+        <module>mybatis-thinking1-spring</module>
+        <module>mybatis-thinking2-spring</module>
+        <module>mybatis-thinking3-spring</module>
+        <module>mybatis-thinking4-spring</module>
     </modules>
     <packaging>pom</packaging>
 
