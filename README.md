@@ -1,7 +1,7 @@
 * [第1章 了解MyBatis的官网](#第1章-了解mybatis的官网)
 * [第2章 模拟mybatis源码](#第2章-模拟mybatis源码)
 * [第3章 如何把第三方的对象交给Spring管理](#第3章-如何把第三方的对象交给spring管理)
-  * [第一种方式：<a href="">@Bean </a> 的注解](#第一种方式bean--的注解)
+  * [第一种方式：<a href="">@Bean 的注解</a>](#第一种方式bean--的注解)
   * [第二种方式：通过API的方式，registerSingleton](#第二种方式通过api的方式registersingleton)
   * [第三种方式：FactoryBean](#第三种方式factorybean)
     * [方法一：一个Mapper接口，写一个FactoryBean](#方法一一个mapper接口写一个factorybean)
